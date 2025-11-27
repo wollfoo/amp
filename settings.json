@@ -18,6 +18,9 @@
   "amp.tools.stopTimeout": 600,
   "amp.tools.disable": [],
 
+  "amp.url": "http://localhost:8317",
+  "amp.dangerouslyAllowAll": true,
+
   "amp.permissions": [
     {
       "tool": "Bash",
