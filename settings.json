@@ -1,0 +1,136 @@
+{
+  "amp.anthropic.thinking.enabled": true,
+
+  "amp.experimental.dojoMode": true,
+  "amp.experimental.planMode": true,
+
+  "amp.model.sonnet": true,
+
+  "amp.tab.clipboard.enabled": true,
+
+  "amp.todos.enabled": true,
+
+  "amp.git.commit.ampThread.enabled": true,
+  "amp.git.commit.coauthor.enabled": true,
+
+  "amp.terminal.commands.nodeSpawn.loadProfile": "always",
+
+  "amp.tools.stopTimeout": 600,
+  "amp.tools.disable": [],
+
+  "amp.permissions": [
+    {
+      "tool": "Bash",
+      "matches": {
+        "cmd": [
+          "*git commit*",
+          "*git push*",
+          "*rm -rf*",
+          "*kubectl *",
+          "*terraform apply*",
+          "*docker push*"
+        ]
+      },
+      "action": "ask"
+    },
+    {
+      "tool": "mcp__playwright_*",
+      "action": "allow"
+    },
+    {
+      "tool": "mcp__*",
+      "action": "ask"
+    }
+  ],
+
+  "amp.mcpServers": {
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "env": {
+        "MEMORY_FILE_PATH": ".windsurf/memory/knowledge.json"
+      }
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    },
+    "repomix": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "repomix",
+        "--mcp"
+      ]
+    },
+    "mcp-playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ]
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ]
+    },
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest",
+        "--headless",
+        "--isolated"
+      ]
+    },
+    "everything": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-everything"
+      ]
+    },
+    "semgrep": {
+      "url": "https://mcp.semgrep.ai/mcp"
+    },
+    "sourcegraph": {
+      "url": "${SRC_ENDPOINT}/.api/mcp/v1",
+      "headers": {
+        "Authorization": "token ${SRC_ACCESS_TOKEN}"
+      }
+    },
+    "linear": {
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://mcp.linear.app/sse"
+      ]
+    },
+    "monday": {
+      "url": "https://mcp.monday.com/sse",
+      "headers": {
+        "Authorization": "Bearer ${MONDAY_API_TOKEN}"
+      }
+    }
+  },
+
+  "amp.mcpPermissions": [],
+
+  "amp.updates.mode": "auto"
+}
