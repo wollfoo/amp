@@ -1,176 +1,115 @@
 ---
-description: Orchestrate multiple specialized agents to complete complex tasks efficiently
-argument-hint: <task-description-or-file-path>
+description: Orchestrate AMP's 3 specialized subagents for complex tasks
+argument-hint: <task-description>
 allowed-tools: Read, Write, Edit, Grep, Glob, Bash
 ---
 
-# Multi-Agent Task Orchestration
+# AMP Subagent Orchestration
 
-**Task input**: `$ARGUMENTS`
+**Task**: `$ARGUMENTS`
 
-## Step 0: Input Processing
+---
 
-**Task input**: Use `$ARGUMENTS` directly as the task description for orchestration.
+## 3 Specialized Subagents
 
-## Orchestration Strategy
+| Subagent | Model | Purpose |
+|----------|-------|---------|
+| 🔍 **Search** | Claude Haiku 4.5 | Fast, accurate codebase retrieval |
+| 🧠 **Oracle** | GPT-5.1 | Complex reasoning & planning on code |
+| 📚 **Librarian** | Claude Sonnet 4.5 | Large-scale retrieval & research on external code |
 
-Analyze the task and coordinate specialized agents using the following approach:
+---
 
-### 1. **Task Analysis**
-- Break down `$ARGUMENTS` into logical components
-- Identify required domains (backend, frontend, database, security, etc.)
-- Map dependencies between sub-tasks
-- Assess complexity and resource requirements
+### 🔍 Search (Claude Haiku 4.5)
+> Fast, accurate codebase retrieval
 
-### 2. **Agent Selection**
-Select appropriate specialized agents from available droids (52 total):
+- **Performance**: 50% faster, ~3X cheaper
+- **Invocation**: **Auto-spawn** — AMP tự động gọi khi cần tìm context
+- **Tools**: Read-only (không edit files)
 
-#### **Architecture & System Design**
-- `architect-review` - Software architecture review and patterns
-- `cloud-architect` - Cloud infrastructure and services
-- `graphql-architect` - GraphQL schema design and federation
+**Use cases**: Locate code, find files, answer "where is X?"
 
-#### **Planning & Strategy**
-- `planner-researcher` - Technical research and implementation planning
-- `planning-strategist` - Strategic planning and roadmaps
-- `plan-reviewer` - Plan validation and review
-- `project-task-planner` - Task breakdown and project management
-- `prd-writer` - Product requirements documentation
-- `refactor-planner` - Refactoring strategy and planning
+---
 
-#### **Backend Development**
-- `backend-architect` - Backend system architecture and API design
-- `blockchain-developer` - Blockchain and smart contracts
-- `hyperledger-fabric-developer` - Hyperledger Fabric development
-- `payment-integration` - Payment system integration
+### 🧠 Oracle (GPT-5.1)
+> Complex reasoning & planning on code
 
-#### **Frontend Development**
-- `frontend-developer` - Web frontend (React, Vue, Angular)
-- `frontend-designer` - UI/UX design and implementation
-- `ui-ux-designer` - User interface and experience design
-- `mobile-developer` - Mobile app development (React Native, Flutter)
-- `game-developer` - Game development
+- **Invocation**: Auto hoặc explicit request
+- **Trade-off**: Slower + expensive, dùng khi cần reasoning depth
 
-#### **Language Specialists**
-- `typescript-expert` - TypeScript type system architecture
-- `python-pro` - Advanced Python development
-- `golang-pro` - Go language specialist
-- `rust-pro` - Rust development
-- `ruby-pro` - Ruby development
-- `php-developer` - PHP development
+**Use cases**:
+- Planning (refactor, architecture)
+- Debugging (complex bugs, log analysis)
+- Code review (logic changes, commits)
 
-#### **Database & Data Engineering**
-- `database-specialist` - Database design, optimization, SQL
-- `data-engineer` - Data pipelines and ETL
-- `data-scientist` - Data analysis and ML models
-
-#### **Quality Assurance & Testing**
-- `code-reviewer` - Code quality and security review
-- `security-auditor` - Security vulnerability assessment
-- `tester` - Test automation and QA
-- `performance-engineer` - Performance optimization and profiling
-- `debug-specialist` - Debugging and troubleshooting
-
-#### **Code Analysis & Refactoring**
-- `code-searcher` - Codebase search and analysis
-- `codebase-research-analyst` - Codebase structure analysis
-- `code-refactor-master` - Code refactoring and cleanup
-- `legacy-modernizer` - Legacy code modernization
-
-#### **DevOps & Infrastructure**
-- `devops-engineer` - CI/CD, containerization, orchestration
-
-#### **Documentation & Content**
-- `docs-architect` - Technical documentation architecture
-- `technical-documentation-specialist` - API and technical docs
-- `content-writer` - Content creation and copywriting
-
-#### **AI & Context Management**
-- `context-manager` - AI context engineering and orchestration
-- `memory-bank-synchronizer` - Memory and context synchronization
-
-#### **Research & Knowledge**
-- `web-research-specialist` - Web research and information gathering
-- `tech-knowledge-assistant` - Technical knowledge and guidance
-
-#### **Crypto & Finance**
-- `crypto-analyst` - Cryptocurrency market analysis
-- `crypto-trader` - Trading strategies and signals
-- `crypto-risk-manager` - Risk management for crypto
-- `quant-analyst` - Quantitative analysis
-- `arbitrage-bot` - Arbitrage opportunities detection
-- `defi-strategist` - DeFi strategy and protocols
-
-#### **Machine Learning**
-- `ml-engineer` - Machine learning engineering and models
-
-#### **Education & Coaching**
-- `vibe-coding-coach` - Coding education and mentorship
-
-### 3. **Coordination Workflow**
-Execute by invoking other custom slash commands in sequence:
-
+**Prompts**:
 ```
-1. Planning Phase:
-   - /planner-researcher to analyze requirements
-   - /architect-review to define architecture
-   
-2. Implementation Phase:
-   - Delegate to domain-specific commands
-   - Coordinate parallel execution when possible
-   
-3. Validation Phase:
-   - /code-reviewer for quality assurance
-   - /security-auditor for security review
-   - /tester for comprehensive testing
-   
-4. Documentation Phase:
-   - /docs-architect for technical documentation
+"Use the oracle to review the last commit's changes"
+"Ask the oracle whether there isn't a better solution"
+"Use the oracle as much as possible, since it's smart"
+"Use the oracle to analyze and design better architecture"
 ```
 
-### 4. **Result Integration**
-- Collect outputs from all agents
-- Resolve conflicts and inconsistencies
-- Synthesize comprehensive solution
-- Validate completeness and correctness
+---
 
-### 5. **Verification**
-- Run tests and validation checks
-- Security and performance review
-- Ensure all requirements met
-- Document implementation decisions
+### 📚 Librarian (Claude Sonnet 4.5)
+> Large-scale retrieval & research on external code
 
-## Delegation Example
+- **Scope**: All public GitHub + authorized private repos
+- **Limit**: Default branch only
+- **Output**: In-depth, detailed explanations
+- **Requires**: [GitHub connection](https://ampcode.com/settings)
 
-For `$ARGUMENTS`, coordinate by calling specialized commands:
+**Use cases**:
+- Framework/library internals
+- Multi-repo search
+- Open-source examples
+- Dependency debugging
 
-**Step 1 - Analysis:**
-```bash
-/planner-researcher $ARGUMENTS
+**Prompts**:
+```
+"Use the Librarian to lookup how React's useEffect is implemented"
+"Ask the Librarian to explain why we're getting this error from Zod"
+"Use the Librarian to investigate [service] - any recent API changes?"
 ```
 
-**Step 2 - Architecture:**
-```bash
-/backend-architect [requirements from step 1]
+---
+
+## Orchestration Flow
+
+```
+$ARGUMENTS
+    │
+    ▼
+┌─────────────────────────────────────────────────┐
+│              MAIN AGENT (Sonnet 4)              │
+│                                                 │
+│  ┌─────────┐  ┌─────────┐  ┌─────────────────┐ │
+│  │ Search  │  │ Oracle  │  │    Librarian    │ │
+│  │ (auto)  │  │ (reason)│  │ (external code) │ │
+│  └─────────┘  └─────────┘  └─────────────────┘ │
+└─────────────────────────────────────────────────┘
 ```
 
-**Step 3 - Implementation:**
-```bash
-/database-specialist [schema from step 2]
-```
+### Workflow
 
-**Note:** Each command is a separate slash command defined in `.claude/commands/` or `~/claude/commands/`.
-You orchestrate by calling them sequentially and passing context between them.
+1. **Discovery**: Search → locate relevant code
+2. **External Research**: Librarian → investigate dependencies/libraries
+3. **Analysis**: Oracle → deep reasoning, plan approach
+4. **Implementation**: Main agent executes with Search support
+5. **Validation**: Oracle → review changes
 
-## Output
+---
 
-Provide:
-- **Summary**: Overview of orchestration approach
-- **Agent Assignments**: Which agents handle which parts
-- **Execution Plan**: Step-by-step coordination
-- **Dependencies**: What depends on what
-- **Timeline**: Estimated completion sequence
-- **Results**: Integrated final output from all agents
+## Quick Reference
+
+| Need | Subagent | Prompt Pattern |
+|------|----------|----------------|
+| Find code | Search | *(auto)* |
+| Debug complex bug | Oracle | "Use the oracle to..." |
+| Review logic | Oracle | "Ask the oracle to review..." |
+| Library internals | Librarian | "Ask the Librarian to lookup..." |
+| Cross-repo research | Librarian | "Use the Librarian to investigate..." |
 
 ---
 
