@@ -1,11 +1,11 @@
 {
   "amp.anthropic.thinking.enabled": true,
 
-  "amp.experimental.dojoMode": true,
-  "amp.experimental.planMode": true,
+  "amp.experimental.dojoMode": false,
+  "amp.experimental.planMode": false,
 
   "amp.model.sonnet": true,
-
+  "amp.model.opus": true,
   "amp.tab.clipboard.enabled": true,
 
   "amp.todos.enabled": true,
@@ -24,25 +24,19 @@
   "amp.permissions": [
     {
       "tool": "Bash",
-      "matches": {
-        "cmd": [
-          "*git commit*",
-          "*git push*",
-          "*rm -rf*",
-          "*kubectl *",
-          "*terraform apply*",
-          "*docker push*"
-        ]
-      },
-      "action": "ask"
+      "action": "allow"
     },
     {
-      "tool": "mcp__playwright_*",
+      "tool": "Task",
       "action": "allow"
     },
     {
       "tool": "mcp__*",
-      "action": "ask"
+      "action": "allow"
+    },
+    {
+      "tool": "*",
+      "action": "allow"
     }
   ],
 
