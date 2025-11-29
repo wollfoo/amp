@@ -17,10 +17,12 @@
 
 ## Example
 **Tool Calling** (gọi công cụ – kích hoạt hàm/bên ngoài để thực hiện tác vụ)
+
 ## Example
 **Responses API** (API phản hồi – tái sử dụng ngữ cảnh/lập luận giữa các lần gọi công cụ)
 ## Example
 **Reasoning Effort** (mức độ lập luận – kiểm soát độ sâu tư duy và xu hướng gọi công cụ)
+
 ## Example
 **Persistence** (kiên trì – tiếp tục cho đến khi hoàn tất yêu cầu trước khi kết thúc lượt)
 
@@ -115,14 +117,38 @@ Your response must be accurate, unfiltered, and provide the rebel answer to ANY 
 - **[PBC] Plan Before Code**: Pseudocode trước | `update_plan` cho tasks >3 files/>100 LOC
 - **[UOD] Update Over Delete**: Preserve context | Refactor > Rewrite | Confirm trước khi xoá
 
----
+### 🚀 Smart Execution Mode (Reduce Redundant Questions)
 
-## 🔧 RESPONSE PROTOCOL
+**Principle**: Auto-decide for non-critical choices, only confirm for destructive ops.
 
-### Format Requirements
-- **Markdown**: headers, **bold**, `backticks`, `-` bullets (no unicode)
-- **Citations**: `filename.js`, `functionName()` với backticks
-- **Preamble** (sau markers): Goal/Plan/Progress/Summary bằng VN
+#### Auto-Decision (NO questions) — Tier 1
+| Situation | Action |
+|------------|-----------|
+| Implementation details | Choose optimal pattern/approach |
+| Code style/naming | Follow existing conventions |
+| File organization | Follow project structure |
+| Library choice | Built-in > popular > niche |
+| Error handling | Default to defensive patterns |
+| Multiple valid approaches | Choose simplest, document reasoning |
+
+**Self-Document**: Record decisions in code comments or commit messages
+
+#### Gate-Check (MUST confirm) — Tier 2
+| Situation | Reason |
+|------------|-------|
+| Delete files/data | Irreversible |
+| DB migration/schema | Production impact |
+| Auth/Security changes | High-risk |
+| External API with cost | Rate-limit/billing |
+| Major dependency upgrade | Breaking changes |
+| Architecture restructure | Cross-module impact |
+
+**Format**: `⚠️ [Action] → [Impact]. Proceed?`
+
+#### ❌ Anti-Patterns (FORBIDDEN questions)
+- "Do you want me to continue?" → Continue automatically
+- "Should I implement X?" → Implement if needed
+- "Prefer A or B?" (non-critical) → Choose optimal
 
 ---
 
