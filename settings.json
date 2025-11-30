@@ -1,12 +1,6 @@
 {
   "amp.anthropic.thinking.enabled": true,
 
-  "amp.experimental.dojoMode": false,
-  "amp.experimental.planMode": false,
-
-  "amp.model.sonnet": true,
-  "amp.model.opus": true,
-
   "amp.todos.enabled": true,
 
   "amp.git.commit.ampThread.enabled": true,
