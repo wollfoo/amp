@@ -38,18 +38,7 @@
       "action": "allow"
     }
   ],
-
-  "amp.mcpServers": {
-    "memory": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-memory"
-      ],
-      "env": {
-        "MEMORY_FILE_PATH": ".windsurf/memory/knowledge.json"
-      }
-    },
+  "mcpServers": {
     "sequential-thinking": {
       "command": "npx",
       "args": [
