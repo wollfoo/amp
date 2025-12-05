@@ -1,8 +1,3 @@
----
-description: Optimize and refine prompts for AI systems with expert techniques
-argument-hint: <prompt-to-optimize>
----
-
 # Prompt Engineering & Optimization
 
 **Input prompt to optimize**: `$ARGUMENTS`

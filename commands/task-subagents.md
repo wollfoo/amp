@@ -1,9 +1,3 @@
----
-description: Orchestrate multiple specialized agents to complete complex tasks efficiently
-argument-hint: <task-description-or-file-path>
-allowed-tools: Read, Write, Edit, Grep, Glob, Bash
----
-
 # Multi-Agent Task Orchestration
 
 **Task input**: `$ARGUMENTS`

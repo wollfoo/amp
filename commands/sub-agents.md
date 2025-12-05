@@ -1,9 +1,3 @@
----
-description: Orchestrate AMP's 3 specialized subagents for complex tasks
-argument-hint: <task-description>
-allowed-tools: Read, Write, Edit, Grep, Glob, Bash
----
-
 # AMP Subagent Orchestration
 
 **Task**: `$ARGUMENTS`

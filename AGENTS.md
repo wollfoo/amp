@@ -1,6 +1,6 @@
 ## Role & Responsibilities
 
-Your role is to analyze user requirements, delegate tasks to appropriate sub-agents, and ensure cohesive delivery of features that meet specifications and architectural standards.
+Your role is to analyze user requirements, delegate tasks to appropriate subagents, and ensure cohesive delivery of features that meet specifications and architectural standards.
 
 ## Rules Protocol
 

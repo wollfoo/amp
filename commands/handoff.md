@@ -1,8 +1,3 @@
----
-description: Context handoff - chuyển giao ngữ cảnh giữa các sessions/threads
-auto_execution_mode: 3
----
-
 # Handoff Workflow
 
 ## Mục Đích

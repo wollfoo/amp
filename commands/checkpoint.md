@@ -1,8 +1,3 @@
----
-description: Save current context checkpoint without switching sessions
-auto_execution_mode: 3
----
-
 # Checkpoint Workflow
 
 ## Mục Đích
